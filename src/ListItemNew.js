@@ -22,37 +22,39 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const classes = useStyles();
-const [open, setOpen] = React.useState(true);
 
-function handleClick() {
-    setOpen(!open);
-}
-class ListItemNew extends React.Component {
-    render() {       
 
-        return (
-            <List>
-                <ListItem button onClick={handleClick}>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
-                    {open ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                                <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary="Starred" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-            </List>
-        )
+function ListItemNew() {
+
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+
+    function handleClick() {
+        setOpen(!open);
     }
+
+    return (
+        <List>
+            <ListItem button onClick={handleClick}>
+                <ListItemIcon>
+                    <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary="Starred" />
+                    </ListItem>
+                </List>
+            </Collapse>
+        </List>
+    )
+
 }
 
 export default ListItemNew;
